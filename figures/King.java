@@ -31,9 +31,7 @@ public class King extends Figure
         for (int[] move : moveSet) {
             pos.x = this.pos.x + move[0];
             pos.y = this.pos.y + move[1];
-            if (gameBoard.inBounds(pos)) {
-                this.preMoves.add(new Position(pos.x, pos.y));
-            }
+            if (gameBoard.inBounds(pos)) this.preMoves.add(new Position(pos.x, pos.y));
         }
         this.removeFriendlyFire();
     }
@@ -56,14 +54,10 @@ public class King extends Figure
      */
     public void checkCheck() {
         for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                if (gameBoard.notNull(x, y) && gameBoard.board[x][y].figure.player != this.player) {
-                    for (Position to : gameBoard.board[x][y].figure.preMoves) {
-                        if (to.x == this.pos.x && to.y == this.pos.y) {
-                            this.check = true;
-                            return;
-                        }
-                    }
+            for (int y = 0; y < 8; y++) if (gameBoard.notNull(x, y) && gameBoard.board[x][y].figure.player != this.player) {
+                for (Position to : gameBoard.board[x][y].figure.preMoves) if (to.x == this.pos.x && to.y == this.pos.y) {
+                    this.check = true;
+                    return;
                 }
             }
         }
@@ -81,11 +75,9 @@ public class King extends Figure
 
         for (int x = 0; x < 8; x++) {
             for (int y = 0; y < 8; y++) {
-                if (gameBoard.notNull(x, y) && gameBoard.board[x][y].figure.player == this.player) {
-                    if (gameBoard.board[x][y].figure.moves.size() > 0) {
-                        this.checkMate = false;
-                        return;
-                    }
+                if (gameBoard.notNull(x, y) && gameBoard.board[x][y].figure.player == this.player && gameBoard.board[x][y].figure.moves.size() > 0) {
+                    this.checkMate = false;
+                    return;
                 }
             }
         }
@@ -107,20 +99,14 @@ public class King extends Figure
         int x = this.pos.x + r;
 
         while (x != rookPosition.x) {
-            if (gameBoard.notNull(x, y)) {
-                return;
-            }
+            if (gameBoard.notNull(x, y)) return;
             x += r;
         }
 
         if (r == -1) {
-            if (gameBoard.virtualCastling(this, new Position(2, y), rook, new Position(3, y))) {
-                this.canCastle(new Position(2, y), rook);
-            }
+            if (gameBoard.virtualCastling(this, new Position(2, y), rook, new Position(3, y))) this.canCastle(new Position(2, y), rook);
         } else {
-            if (gameBoard.virtualCastling(this, new Position(6, y), rook, new Position(5, y))) {
-                this.canCastle(new Position(6, y), rook);
-            }
+            if (gameBoard.virtualCastling(this, new Position(6, y), rook, new Position(5, y))) this.canCastle(new Position(6, y), rook);
         }
     }
 
