@@ -63,10 +63,8 @@ public class Figure
     new Position(0, 0) == new Position(0, 0) -> false, so it needs costume compare;
      */
     public boolean canMoveTo(Position to) {
-        for (Position pos : this.moves) {
-            if (pos.x == to.x && pos.y == to.y) {
-                return true;
-            }
+        for (Position pos : this.moves) if (pos.x == to.x && pos.y == to.y) {
+            return true;
         }
         return false;
     }
@@ -77,9 +75,7 @@ public class Figure
      */
     public void copyMoves() {
         moves = new ArrayList<>();
-        for (Position pos : this.preMoves) {
-            moves.add(new Position(pos.x, pos.y));
-        }
+        for (Position pos : this.preMoves) moves.add(new Position(pos.x, pos.y));
     }
 
 
