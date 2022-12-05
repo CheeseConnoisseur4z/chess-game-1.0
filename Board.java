@@ -27,9 +27,7 @@ public class Board
      */
     public void moveFigure(Figure selected, Position pos) {
         selected.setDisplayPosition(pos);
-        if (notNull(pos)) {
-            boardAt(pos).display.setVisible(false);
-        }
+        if (notNull(pos)) boardAt(pos).display.setVisible(false);
         this.moveOnBoard(selected, pos);
         selected.movedTimes++;
     }
@@ -43,17 +41,13 @@ public class Board
         clearCastlingPartner(withinVirtualMove);
         ArrayList<Figure> rooks = new ArrayList<>();
         for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                if (notNull(x, y)) {
-                    Figure selected = board[x][y].figure;
-                    selected.calculateMoves();
-                    if (!withinVirtualMove) {
-                        if (selected.type == ROOK) {
-                            rooks.add(selected);
-                        }
-                        selected.copyMoves();
-                        selected.moves.removeIf(to -> !virtualMove(selected, to));
-                    }
+            for (int y = 0; y < 8; y++) if (notNull(x, y)) {
+                Figure selected = board[x][y].figure;
+                selected.calculateMoves();
+                if (!withinVirtualMove) {
+                    if (selected.type == ROOK) rooks.add(selected);
+                    selected.copyMoves();
+                    selected.moves.removeIf(to -> !virtualMove(selected, to));
                 }
             }
         }
@@ -185,10 +179,8 @@ public class Board
 
         //ads figures before tiles;
         for (int x = 0; x < 8; x++) {
-            for (int y = 0; y < 8; y++) {
-                if (board[x][y].figure != null) {
-                    Graphics.frame.add(board[x][y].figure.display);
-                }
+            for (int y = 0; y < 8; y++) if (board[x][y].figure != null) {
+                Graphics.frame.add(board[x][y].figure.display);
             }
         }
         Graphics.addMoveOverlayToFrame(moveOverlay, true);
