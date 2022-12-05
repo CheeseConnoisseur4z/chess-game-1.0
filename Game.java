@@ -76,7 +76,7 @@ public class Game
                 }
             }
         }
-        System.out.println("cant move, turn skipped");
+        System.out.println("can't move, turn skipped");
         makeMove(null, null, false);
     }
 
