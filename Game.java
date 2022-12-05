@@ -59,9 +59,7 @@ public class Game
             gameBoard.getKing(p).checkCheck();
             gameBoard.getKing(p).checkCheckMate();
         }
-        if (gameBoard.kingWhite.getCheckMate() || gameBoard.kingBlack.getCheckMate()) {
-            gameOver();
-        }
+        if (gameBoard.kingWhite.getCheckMate() || gameBoard.kingBlack.getCheckMate()) gameOver();
     }
 
 
