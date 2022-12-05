@@ -25,9 +25,7 @@ public class Knight extends Figure
         for (int[] move : moveSet) {
             pos.x = this.pos.x + move[0];
             pos.y = this.pos.y + move[1];
-            if (gameBoard.inBounds(pos)) {
-                this.preMoves.add(new Position(pos.x, pos.y));
-            }
+            if (gameBoard.inBounds(pos)) this.preMoves.add(new Position(pos.x, pos.y));
         }
         this.removeFriendlyFire();
     }
