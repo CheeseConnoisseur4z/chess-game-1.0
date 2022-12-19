@@ -50,7 +50,7 @@ public class King extends Figure
         - if it can eat the enemy's figure (with its move set), then the figure can eat him -> check
     WHY NOT DO THIS?:
         - I don't feel changing it
-        - it's better for the "AI" algorithm to know more information for further evaluation
+        - it's better for the "AI" algorithm to know more information for further evaluation (idk what im talking about, it's only the 1st reason)
      */
     public void checkCheck() {
         for (int x = 0; x < 8; x++) {
