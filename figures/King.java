@@ -49,7 +49,7 @@ public class King extends Figure
         - make king move from his position with every figure's move set
         - if it can eat the enemy's figure (with its move set), then the figure can eat him -> check
     WHY NOT DO THIS?:
-        - I don't feel like doing it
+        - I don't feel changing it
         - it's better for the "AI" algorithm to know more information for further evaluation
      */
     public void checkCheck() {
